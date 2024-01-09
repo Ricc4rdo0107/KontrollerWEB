@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>LOGIN</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      var messages = {{ messages | safe }};
+      for (var i=0; i<messages.length; i++) {
+        alert(messages[i]);
+        console.log(messages[i])
+      }
+    </script>
+  {% endif %}
+{% endwith %}
+
+<link rel="stylesheet" href="./style_index.css">
+<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+
+
+<div id="login-form-wrap" style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+  <form id="login-form" method="POST">
+    <p>
+    <input type="text" id="username_input" name="username_input" placeholder="Username" required><i class="validation"><span></span><span></span></i>
+    </p>
+    <p>
+    <input type="password" id="password_input" name="password_input" placeholder="Password" required><i class="validation"><span></span><span></span></i>
+    </p>
+    <p>
+    <input type="submit" id="login" value="Login">
+    </p>
+  </form>
+</div><!--login-form-wrap-->
+<!-- partial -->
+  
+</body>
+</html>

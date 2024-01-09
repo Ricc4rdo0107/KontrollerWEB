@@ -1,0 +1,102 @@
+<head>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/popup-white.png') }}">
+</head>
+<style>
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    input {
+        border: 2px solid black;
+    }
+    body {
+        background-color: black;
+        color: white;
+        font-family: 'Courier New', monospace;
+    }
+</style>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <script>
+    var messages = {{ messages | safe }};
+    for (var i=0; i<messages.length; i++) {
+      alert(messages[i]);
+      console.log(messages[i])
+    }
+  </script>
+{% endif %}
+{% endwith %}
+
+<script>
+    function testJS(){
+        var a = document.getElementById("test");
+        a.value = "http://";
+    }
+
+    var input = document.getElementById("input_cmd");
+    input.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("submitButton").click();
+      }
+    });
+</script>
+
+<body>
+<h4>
+    Buttons must be separated by a semicolon if Tkinter is selected.
+    If WinApi is selected then this are the types:
+    <ul>
+        <li>0 : OK</li>
+        <li>1 : OK | Cancel</li>
+        <li>2 : Abort | Retry | Ignore</li>
+        <li>3 : Yes | No | Cancel</li>
+        <li>4 : Yes | No</li>
+        <li>5 : Retry | Cancel </li>
+        <li>6 : Cancel | Try Again | Continue</li>
+    </ul>
+</h4>
+
+<form method="POST">
+    <table class="center">
+        <tr>
+            <td>
+                <label>Title</label>
+            </td>
+            <td>
+                <input name="title">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Body</label>
+                <td>
+                    <textarea name="body" style="border: 2px solid black;"></textarea>
+                </td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Buttons</label>
+                <td>
+                    <input name="buttons" id="buttons">
+                </td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="radio" id="winapi" name="type" value="winapi">
+                <label for="winapi">WinApi</label>
+            </td>
+            <td>
+                <input type="radio" id="tkinter" name="type" value="tkinter">
+                <label for="tkinter">Tkinter</label>
+            </td>
+        </tr>
+        <input type="submit" name="submit" value="submit" id="submitButton" style="visibility: hidden;">
+    </table>
+</form>
+</body>
