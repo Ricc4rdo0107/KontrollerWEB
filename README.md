@@ -12,4 +12,4 @@ this is a web application developed in python using flask, this application is u
 
 :msgbox                       | open the "message box creation tab"
 
-now working on making the microphone to work with the webcam
+currently working on making the microphone to work with the webcam
