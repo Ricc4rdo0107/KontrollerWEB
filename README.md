@@ -1,7 +1,7 @@
 # KontrollerWEB
 this is a web application developed in python using flask, this application is used to take control of someone else's machine
 
-<code>
+
 :download <filename>          | download file
 
 :webcam_stream                | stream the webcam in another tab
@@ -11,6 +11,5 @@ this is a web application developed in python using flask, this application is u
 :screenshot / :screen         | download screenshot
 
 :msgbox                       | open the "message box creation tab"
-</code>
 
 now working on making the microphone to work with the webcam
